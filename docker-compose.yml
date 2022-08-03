@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    logging:
+      driver: 'json-file'
+      options: 
+        max-size: '1024m'
+        max-file: '3'
+    volumes:
+      - $PWD/docker_nginx:/etc/nginx/conf.d
+
+    
+  app:
+    image: 'rickandmorty_v1'
+    restart: always
+    ports:
+      - 3000:3000
+    logging:
+      driver: 'json-file'
+      options: 
+        max-size: '1024m'
+        max-file: '3'
+    
+ 
+
+  
